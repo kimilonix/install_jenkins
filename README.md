@@ -1,6 +1,6 @@
-Ansible Playbook for Installing Jenkins on Ubuntu
-
 # Jenkins Installation on Ubuntu
+
+Ansible Playbook for Installing Jenkins on Ubuntu
 
 This guide provides step-by-step instructions for installing Jenkins on an Ubuntu server. Jenkins is an open-source automation server that helps automate parts of the software development process.
 
