@@ -10,8 +10,6 @@ This guide provides step-by-step instructions for installing Jenkins on an Ubunt
 - [Installation Steps](#installation-steps)
 - [Accessing Jenkins](#accessing-jenkins)
 - [Post-Installation Setup](#post-installation-setup)
-- [Uninstalling Jenkins](#uninstalling-jenkins)
-- [Troubleshooting](#troubleshooting)
 
 ## Prerequisites
 
