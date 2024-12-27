@@ -1,0 +1,53 @@
+---
+- name: Install Jenkins on Ubuntu
+  hosts: jenkins
+  become: yes
+  vars_file:
+    - main.yml
+    
+  tasks:
+    - name: Update apt repository and install dependencies
+      apt:
+        update_cache: yes
+        name: "{{ install_dependencies }}"
+        state: present
+        
+    - name: Install Java
+      apt:
+        name: openjdk-11-jdk
+        state: present
+
+    - name: Add Jenkins key
+      apt_key:
+        url: https://pkg.jenkins.io/debian/jenkins.io.key
+        state: present
+
+    - name: Add Jenkins repository
+      apt_repository:
+        repo: "{{ jenkins.repo }}"
+        state: present
+
+    - name: Install Jenkins
+      apt:
+        repo: "{{ jenkins.package }}"
+        state: present
+
+    - name: Start and enable Jenkins service
+      systemd:
+        name: jenkins
+        state: started
+        enabled: yes
+
+    - name: Wait for Jenkins to start
+      wait_for:
+        port: "{{ jenkins.port }}"
+        delay: 10
+        timeout: 300
+
+    - name: Get initial admin password
+      command: cat /var/lib/jenkins/secrets/initialAdminPassword
+      register: initial_admin_password
+
+    - name: Display initial admin password
+      debug:
+        msg: "Initial Admin Password is {{ initial_admin_password.stdout }}"

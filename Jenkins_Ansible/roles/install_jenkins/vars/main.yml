@@ -1,0 +1,10 @@
+jenkins:
+package: "jenkins"
+repo: "deb http://pkg.jenkins.io/debian-stable binary/"
+port: 8080
+install_dependencies: 
+  - openjdk-11-jdk
+  - wget
+  - gnupg2
+  
+  
